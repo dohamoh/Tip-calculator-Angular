@@ -1,0 +1,129 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Tip calculator app</title>
+
+  <!-- <link rel="stylesheet" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/tip-calculator-app-main/bootstrap-5.1.3-dist/bootstrap-5.1.3-dist/css/bootstrap.min.css"> -->
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+  
+</head>
+
+<body>
+
+  <div class=" img container d-flex justify-content-center align-items-center mt-md-3 mb-md-5 mb-sm-5 mb-5">
+    <img src="../../assets/images/logo.svg" class=" me-5 ms-3" alt="">
+  </div>
+
+
+  <div class=" container d-flex justify-content-center">
+    <div class="row bg-white p-4 p-md-4 mt-md-3 main p-sm-4">
+
+      <div class=" col-xl-6 col-sm-12 sec1">
+
+        <form class="input2 mt-md-4" [formGroup]="infoForm">
+
+        <div class=" d-flex justify-content-between">
+
+          <label for="bill">Bill</label>
+
+          <div *ngIf="infoForm.get('billInput')?.errors != null && infoForm.get('billInput')?.touched">
+
+            <p class=" pe-md-3 text-end text-danger" *ngIf="infoForm.get('billInput')?.errors?.['min']">Can't Be Less Than 100</p>
+            <p class=" pe-md-3 text-end text-danger" *ngIf="infoForm.get('billInput')?.errors?.['required']">The Bill Is Requried</p>
+            <p class=" pe-md-3 text-end text-danger" *ngIf="infoForm.get('billInput')?.errors?.['max']">Greater Than The Maximum</p>
+          </div>
+
+        </div>
+          <input formControlName='billInput' type="age" class=" form-control mb-md-3 mb-sm-3 bg-light inputa"  id="bill" placeholder="0">
+
+        </form>
+
+        <div class="tip">
+          <p>Select Tip %</p>
+
+          <div class=" row tip2">
+            <button [disabled]="infoForm.invalid" (click)="getRes(0.05, infoForm)" class=" col-md-3 col-5 mb-3 btn me-md-2 me-3 text-white fw-bold" id="btn1">0%</button>
+            <button [disabled]="infoForm.invalid" (click)="getRes(0.10, infoForm)" class=" col-md-3 col-5 mb-3 btn ms-md-2  text-white fw-bold" id="btn2">5%</button>
+            <button [disabled]="infoForm.invalid" (click)="getRes(0.15, infoForm)" class=" col-md-3 col-5 mb-3 btn ms-md-3 me-3 text-white fw-bold " id="btn3">15%</button>
+          
+            <button [disabled]="infoForm.invalid" type="submit" (click)="getRes(0.25, infoForm)" class=" col-md-3 col-5 mb-3 btn me-md-2 text-white fw-bold" id="btn4">25%</button>
+            <button [disabled]="infoForm.invalid" (click)="getRes(0.50, infoForm)" class=" col-md-3 col-5 mb-3 btn ms-md-2 me-3 text-white fw-bold" id="btn5">50%</button>
+            <input [disabled]="infoForm.invalid" type="age" (blur)="getRes(custom/100, infoForm)" class=" col-md-3 col-5 mb-3 bg-light text-center rounded-1 border-0 fw-bold" id="custom" placeholder="Custom">
+          </div>
+        </div>
+
+        <form class="input2 mt-md-4" [formGroup]="infoForm">
+
+          <div class=" d-flex justify-content-between">
+            <label for="numOfPeople">Number Of People</label>
+
+          <div *ngIf="infoForm.get('peopleNum')?.errors != null && infoForm.get('peopleNum')?.touched">
+
+            <p class=" pe-md-3 text-end text-danger" *ngIf="infoForm.get('peopleNum')?.errors?.['min']">Can't be zero</p>
+            <p class=" pe-md-3 text-end text-danger" *ngIf="infoForm.get('peopleNum')?.errors?.['required']">The number of people is requried</p>
+            <p class=" pe-md-3 text-end text-danger" *ngIf="infoForm.get('peopleNum')?.errors?.['max']">greater than the maxmum</p>
+          </div>
+          </div>
+
+          <input formControlName="peopleNum" type="age" class=" form-control mb-3 bg-light inputb mt-md-2" id="numOfPeople" placeholder="0">
+
+        </form>
+      </div>
+
+      <div class=" offset-xl-1 col-xl-5 col-sm-12 sec2 p-sm-4 p-4">
+
+        <div class="sec2a pt-3 mb-md-3 mb-3 text-white d-flex justify-content-between">
+        <h6 class="">Tip Amount
+            <br>
+          <span class=" fs-6">/ person</span>
+        </h6>
+          <!-- <p>/person</p> -->
+          <h1 id="tipAmount"><span *ngIf="!tipAmount">$0.00</span>{{rounded1}}</h1>
+        </div>
+
+        <div class="sec2a pt-3 text-white d-flex justify-content-between mb-sm-4 mb-4">
+          
+            <h6 class="">Total
+                <br>
+              <span class=" fs-6">/ person</span>
+            </h6>
+              <!-- <p>/person</p> -->
+              <h1 id="total"><span *ngIf="!total">$0.00</span>{{rounded2}}</h1>
+            </div>
+
+            <button (click)="getreset()" class=" btn text-center mt-md-5 mt-5 ms-md-3 p-md-2 fw-bolder" id="reset">RESET</button>
+      </div>
+    </div>
+  </div>
+
+  <div class=" mt-3 attribution">
+
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Doha Elshafey</a>.
+  </div>
+
+  <!-- <script src="./bootstrap-5.1.3-dist/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./tipcalc.js"></script> -->
+</body>
+
+</html>

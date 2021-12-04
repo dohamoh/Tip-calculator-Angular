@@ -1,0 +1,108 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+
+ body{
+    background-color: hsl(185, 41%, 84%) !important;
+    font-family: 'Space Mono', monospace !important;
+    padding-top: 7rem;
+    padding-bottom: 3rem;
+    
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   margin: 0; 
+   color: hsl(183, 100%, 15%) !important;
+   font-weight: 500;
+   
+}
+
+.main{
+   border-radius: 30px;
+   // width: 60vw;
+   // @media screen {
+   //     width: 100vw;
+   // }
+
+   .sec1{
+
+       .inputb{
+           background: url(../../assets/images/icon-person.svg) no-repeat scroll 10px ;
+           padding-left:30px;
+           direction: rtl;
+           margin-top: 0px;
+       }
+   
+       .inputa{
+           background: url(../../assets/images/icon-dollar.svg) no-repeat scroll 10px ;
+           padding-left: 30px;
+           direction: rtl;
+       }
+   
+       .tip2{
+       
+           button{
+           //    width: 20%;
+              font-size: 20px !important;
+              background-color: hsl(183, 100%, 15%);
+
+              &:hover{
+               background-color: hsl(172, 67%, 45%) !important;
+               color: black !important;
+           }
+
+          }
+
+          input{
+           //    width: 20%;
+           //    height: 2.6rem;
+           color: hsl(183, 100%, 15%);
+        //    margin-top: .5rem;
+              direction: rtl;
+              font-size: 18px;
+              box-sizing: border-box;
+              &:hover{
+               border: 3px solid hsl(172, 57%, 48%) !important;
+              }
+          }
+          
+       }
+   
+       
+   }
+
+   .sec2{
+       background-color:hsl(183, 100%, 15%) !important ;
+       border-radius: 15px;
+
+       .sec2a{
+           span{
+               color: hsl(184, 14%, 56%);
+           }
+
+           h1{
+               color: hsl(172, 67%, 45%);
+               font-weight: 600;
+           }
+
+           h1 span{
+            color: hsl(172, 67%, 45%);
+            font-weight: 600;
+           }
+       }
+
+       button{
+           background-color:hsl(172, 67%, 45%) ;
+           width: 90% !important;
+           &:hover{
+               background-color: hsl(185, 41%, 84%) !important;
+           }
+       }
+   }
+}
+
+
