@@ -1,5 +1,5 @@
 # Tip-calculator
 
-![Design preview for the Tip calculator app coding challenge](./design/desktop-preview.jpg)
+![Design preview](./design/desktop-preview.jpg)
 
 ## Welcome! 👋
